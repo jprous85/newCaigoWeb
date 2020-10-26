@@ -1,3 +1,11 @@
 {
-  "helloWold": "Hello world"
+  "hello": "Hi",
+  "logout": "Logout",
+
+  "profile": "Profile",
+
+  "users": "Users",
+  "events": "Events"
+
+
 }

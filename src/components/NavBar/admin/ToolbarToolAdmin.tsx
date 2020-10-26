@@ -3,11 +3,13 @@ import {createStyles, IconButton, makeStyles, Theme, Typography, Toolbar} from "
 import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuProfile from "./MenuProfile";
+import {useTranslation} from "react-i18next";
 
-const ToolbarTool = (props: any) => {
+const ToolbarToolAdmin = (props: any) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const {toggleDrawer} = props;
+  const {toggleDrawer, setLogout, user} = props;
+  const { t } = useTranslation();
 
   const handleAccountMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -26,6 +28,9 @@ const ToolbarTool = (props: any) => {
       <Typography variant="h6" className={classes.title}>
         News
       </Typography>
+      <Typography variant="body1">
+        {`${t('hello')},  ${user.username}` }
+      </Typography>
       <IconButton
         aria-label="account of current user"
         aria-controls="menu-appbar"
@@ -38,6 +43,7 @@ const ToolbarTool = (props: any) => {
       <MenuProfile
         anchorEl={anchorEl}
         setAnchorEl={setAnchorEl}
+        setLogout={setLogout}
       />
     </Toolbar>
   );
@@ -57,4 +63,4 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export default ToolbarTool;
+export default ToolbarToolAdmin;

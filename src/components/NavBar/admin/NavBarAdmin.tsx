@@ -6,13 +6,14 @@ import {
   Theme,
 } from "@material-ui/core";
 import {Drawer} from '@material-ui/core';
-import ToolbarTool from "../ToolbarTool";
-import DrawerList from "../DrawerList";
+import ToolbarToolAdmin from "./ToolbarToolAdmin";
+import DrawerList from "./DrawerList";
 
 
 const NavBar = (props: any) => {
   const classes = useStyles();
   const [drawerShow, setDrawerShow] = useState(false);
+  const {setLogout, user} = props;
 
   const toggleDrawer = (visibility:boolean) => {
     setDrawerShow(visibility);
@@ -20,7 +21,9 @@ const NavBar = (props: any) => {
 
   return <div className={classes.root}>
     <AppBar position="static" color={"secondary"}>
-      <ToolbarTool
+      <ToolbarToolAdmin
+        user={user}
+        setLogout={setLogout}
         toggleDrawer={toggleDrawer}
       />
     </AppBar>

@@ -1,21 +1,32 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {Container, Paper} from '@material-ui/core';
-import NavBar from "../components/NavBar";
-import {useTranslation} from "react-i18next";
+import NavBarAdmin from "../components/NavBar/admin/NavBarAdmin";
+import {useHistory} from "react-router-dom";
 
-const BasePage = (props: any) => {
-  const { t, i18n } = useTranslation();
+const BaseAdminPage = (props: any) => {
+  const [logout, setLogout] = useState(false);
+  const { user } = props;
+  const history = useHistory();
+  
+  useEffect(()=> {
+    if (logout) {
+      window.localStorage.removeItem('c_uid');
+      history.push('/');
+    }
+  }, [logout, history]);
 
-  console.log(props);
   return (
     <Paper elevation={0}>
-      <NavBar>
+      <NavBarAdmin
+        user={user}
+        setLogout={setLogout}
+      >
         <Container maxWidth={"xl"}>
           {props.children}
         </Container>
-      </NavBar>
+      </NavBarAdmin>
     </Paper>
   );
 }
 
-export default BasePage;
+export default BaseAdminPage;

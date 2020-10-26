@@ -1,32 +1,13 @@
 import React, {useState} from "react";
 import { useTranslation } from 'react-i18next';
-import Events from "../../../utils/traits/Events";
-import Account from "../../../utils/traits/Account";
-// @ts-ignore
-import { useHistory } from "react-router-dom";
+import Events from "../../utils/traits/Events";
 import BasePage from "../BasePage";
 
-const Home = (props: any, context:any) => {
-  const { isLogin, setIsLogin } = props;
-  const { t, i18n } = useTranslation();
+const Home = (props: any) => {
+  const { t } = useTranslation();
+  const { setUid } = props;
   const [data, setData] = useState([]);
-  const history = useHistory();
-
   const events = new Events();
-  const account = new Account();
-
-  const login = () => {
-    account.login('jprous.caigo@gmail.com', '1234567').then((e:string | any) => {
-      if (e.operationType === 'signIn') {
-        setIsLogin(true);
-        history.push( '/admin')
-      }
-    })
-  }
-
-  const logout = () => {
-    account.logout();
-  }
 
   useState( () => {
     events.findBy([
@@ -56,9 +37,12 @@ const Home = (props: any, context:any) => {
     });
 
   });
+
   return (
     <div>
-      <BasePage>
+      <BasePage
+        setUid={setUid}
+      >
         {t('helloWold')}
         <ul>
           {data && data.map((de: any) => {

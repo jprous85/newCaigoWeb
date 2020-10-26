@@ -9,7 +9,6 @@ import PeopleAltOutlined from '@material-ui/icons/PeopleAltOutlined';
 import FormatListBulletedOutlined from '@material-ui/icons/FormatListBulletedOutlined';
 import {useTranslation} from "react-i18next";
 import Divider from '@material-ui/core/Divider';
-import Account from "../../../utils/traits/Account";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 const useStyles = makeStyles((theme) => ({
@@ -24,10 +23,10 @@ const DrawerList = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const history = useHistory();
-  const account = new Account();
 
   const logout = () => {
     history.push("/");
+    window.localStorage.removeItem('c_uid');
   }
 
   return (

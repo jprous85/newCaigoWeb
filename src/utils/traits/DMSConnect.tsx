@@ -1,12 +1,12 @@
-import React from "react";
 import {firebaseApp} from '../firebase.js';
 import firebase from "firebase";
 import {DATATABLE} from "../Constants";
 
 const db = firebase.firestore(firebaseApp);
 
-class Connect {
+class DMSConnect {
   static Datatable = DATATABLE;
+  static db = db;
   protected datatable;
   protected filters: any;
   protected orders: any;
@@ -31,21 +31,18 @@ class Connect {
   public async getQuery() {
     let queryArray:any = [];
     const {datatable, filters, limit, orders} = this;
-    let query = db.collection(datatable);
+    let query: firebase.firestore.Query<firebase.firestore.DocumentData> = db.collection(datatable);
     if (filters) {
       filters.map((f: any) => {
-        // @ts-ignore
-        query = query.where(f.field, f.condition, f.value);
+        return query = query.where(f.field, f.condition, f.value);
       });
     }
     if (orders) {
       orders.map((m: any) => {
-        // @ts-ignore
-        query = query.orderBy(m.field, m.order);
+        return query = query.orderBy(m.field, m.order);
       })
     }
     if (limit) {
-      // @ts-ignore
       query = query.limit(limit);
     }
     await query.get()
@@ -59,9 +56,9 @@ class Connect {
     return queryArray;
   }
 
-  public async findById(id: string) {
+  public findById(id: string) {
     let queryArray: any = [];
-    await db.collection(this.datatable)
+    db.collection(this.datatable)
       .doc(id)
       .get()
       .then(doc => {
@@ -74,4 +71,4 @@ class Connect {
   }
 }
 
-export default Connect;
+export default DMSConnect;

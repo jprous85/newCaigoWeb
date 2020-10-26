@@ -1,13 +1,10 @@
-import React, {useState} from "react";
-import Connect from "./Connect";
+import DMSConnect from "./DMSConnect";
+import DMS from "./DMS";
 
-class Events {
-  private connect = new Connect(Connect.Datatable.EVENT);
-
-  public getAllEvents() {
-    return this.connect.getQuery();
+class Events extends DMS {
+  constructor() {
+    super(DMSConnect.Datatable.EVENTS);
   }
-
 }
 
 export default Events;

@@ -1,27 +1,31 @@
-import React from "react";
-import Connect from "./Connect";
+import DMSConnect from "./DMSConnect";
 
-class DTO {
+class DMS {
 
   private connect;
 
   constructor(datatable: any) {
-    this.connect = new Connect(datatable);
+    this.connect = new DMSConnect(datatable);
   }
 
   public async findAll() {
     return await this.connect.getQuery();
   }
 
-  public async findBy(conditions: object | undefined, orders: object | undefined) {
+  public async findBy(
+    conditions: object | undefined,
+    orders: object | undefined = undefined,
+    limit: number | undefined = undefined
+  ) {
     if (conditions) this.connect.setFilters(conditions);
     if (orders) this.connect.setOrders(orders);
+    if (limit) this.connect.setLimit(limit);
     return await this.connect.getQuery();
   }
 
-  public async findById(condition: string) {
-    return await this.connect.findById(condition);
+  public findById(condition: string) {
+    return this.connect.findById(condition);
   }
 }
 
-export default DTO;
+export default DMS;

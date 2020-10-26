@@ -5,13 +5,17 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import {useTranslation} from "react-i18next";
 
 const MenuProfile = (props: any) => {
-  const { anchorEl, setAnchorEl } = props;
+  const { anchorEl, setAnchorEl, setLogout } = props;
   const { t } = useTranslation();
   const isMenuOpen = Boolean(anchorEl);
 
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    setLogout(true);
+  }
 
   return (
     <Menu
@@ -30,7 +34,7 @@ const MenuProfile = (props: any) => {
         {t('profile')}
       </MenuItem>
       <Divider/>
-      <MenuItem>
+      <MenuItem onClick={handleLogout}>
         <ListItemIcon>
           <ExitToAppIcon/>
         </ListItemIcon>

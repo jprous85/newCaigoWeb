@@ -1,14 +1,59 @@
-import React from 'react';
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-
-const GOOGLE_API_KEY = process.env.REACT_APP_GOOGLE_PLACES_API_KEY
+import React, {useRef} from 'react';
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import {createStyles, Theme} from "@material-ui/core";
+import GoogleMapReact from 'google-map-react';
+import RoomIcon from '@material-ui/icons/Room';
+import { CORPORATIVE_ROSE } from "../../utils/Constants";
 
 const ReactMap = (props: any) => {
+  const classes = useStyles();
+  const {values, setValues} = props;
+  const googleMap = useRef(null);
+  const apiKey:any = process.env.GOOGLE_PLACES_API_KEY;
+
+  const handleChangeCoordinates = (coords: any) => {
+    const {center} = coords;
+    const lat = center.lat;
+    const lng = center.lng;
+
+    setValues({
+      ...values, coords: {
+        lat: lat, lng: lng
+      }
+    })
+  }
+
   return (
-    <Map google={props.google}/>
+    <div style={{ height: '85vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: apiKey}}
+        defaultCenter={values.coords}
+        zoom={14}
+        yesIWantToUseGoogleMapApiInternals
+        onChange={(e: any)=> {
+          handleChangeCoordinates(e);
+        }}
+      >
+        <div style={{
+          position: 'absolute',
+          transform: 'translate(-50%, -50%)',
+          top: -12
+        }}
+        >
+          <RoomIcon
+            style={{
+              color: CORPORATIVE_ROSE,
+              fontSize: 40
+            }}
+          />
+        </div>
+      </GoogleMapReact>
+    </div>
   );
 }
 
-export default GoogleApiWrapper({
-  apiKey: GOOGLE_API_KEY
-})(ReactMap)
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({})
+);
+
+export default ReactMap;

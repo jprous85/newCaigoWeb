@@ -1,3 +1,42 @@
 {
-  "helloWold": "Hola mundo"
+  "hello": "Hola",
+  "logout": "Cerrar sesión",
+
+  "profile": "Perfil",
+
+  "users": "Usuarios",
+  "events": "Eventos",
+
+  "attend": "Asistiré",
+
+
+  "category-filter-musica": "Música",
+  "category-filter-cultura": "Cultura",
+  "category-filter-deporte": "Deportes",
+  "category-filter-gastronomia": "Gastronomía",
+  "category-filter-turismo": "Turismo",
+  "category-filter-infantil": "Infantil",
+
+  "Sunday": "Domingo",
+  "Monday": "Lunes",
+  "Tuesday": "Martes",
+  "Wednesday": "Miércoles",
+  "Thursday": "Jueves",
+  "Friday": "Viernes",
+  "Saturday": "Sábado",
+
+  "january": "Enero",
+  "february": "Febrero",
+  "march": "Marzo",
+  "april": "Abril",
+  "may": "Mayo",
+  "june": "Junio",
+  "july": "Julio",
+  "august": "Agosto",
+  "september": "Septiembre",
+  "october": "Octubre",
+  "november": "Noviembre",
+  "december": "Diciembre",
+
+  "fromPrice": "Desde {{price}} €"
 }
