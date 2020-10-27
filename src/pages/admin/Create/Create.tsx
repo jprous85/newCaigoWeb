@@ -14,6 +14,7 @@ import {
   InputLabel,
   TextareaAutosize
 } from "@material-ui/core";
+import { Editor } from "@tinymce/tinymce-react";
 import TextField from "@material-ui/core/TextField";
 import Simulator from "./../Simulator/Simulator";
 import {CATEGORIES} from "../../../utils/Constants";
@@ -200,17 +201,37 @@ const Create = () => {
               }
 
               <FormControl>
-                <TextField id="description"
-                           label="Description"
-                           fullWidth
-                           multiline
-                           className={classes.inputs}
-                           onChange={(e: any) => {
-                             setValues({...values, description: `${e.target.value}`});
-                           }}
+                <span
+                  style={{marginTop: 15, marginBottom: 10, color: '#777'}}
+                >
+                  {t('description')}
+                </span>
+                <Editor
+                  apiKey="wong66bw5xrqhgxql7bheqmcjxrqcvofwtrwcck4465k2lf7"
+                  value={values.description}
+                  initialValue={values.description}
+                  init={{
+                    height: 200,
+                    menubar: false,
+                    plugins: [
+                      'advlist autolink lists link image',
+                      'charmap print preview anchor help',
+                      'searchreplace visualblocks code',
+                      'insertdatetime media table paste wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic | \
+                      alignleft aligncenter alignright | \
+                      bullist numlist outdent indent | help'
+                  }}
+                  onEditorChange={(e: any) => {
+                    console.log(e);
+                    setValues({...values, description: `${e}`});
+                  }}
                 />
               </FormControl>
               <FormControl>
+
                 <TextField id="descriptionCovid"
                            label="Description for covid"
                            fullWidth
@@ -222,7 +243,7 @@ const Create = () => {
                 />
               </FormControl>
 
-
+              ubicacion
 
               <FormControlLabel
                 className={classes.onlineChecked}

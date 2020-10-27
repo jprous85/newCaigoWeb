@@ -5,11 +5,10 @@ import {createStyles, Theme} from "@material-ui/core";
 const Descriptions = (props: any) => {
   const {title, bodyText} = props;
   const classes = useStyles();
-
   return (
     <div>
       <h5>{title}</h5>
-      <p className={classes.bodyText}>{bodyText}</p>
+      <div dangerouslySetInnerHTML={{__html: bodyText}} className={classes.bodyText}/>
     </div>
   );
 }

@@ -20,7 +20,7 @@ const NavBar = (props: any) => {
   }
 
   return <div className={classes.root}>
-    <AppBar position="static" color={"secondary"}>
+    <AppBar position="fixed" color={"secondary"}>
       <ToolbarToolAdmin
         user={user}
         setLogout={setLogout}
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       flexGrow: 1,
+
     }
   }),
 );
