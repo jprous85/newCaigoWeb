@@ -225,21 +225,37 @@ const Create = () => {
                       bullist numlist outdent indent | help'
                   }}
                   onEditorChange={(e: any) => {
-                    console.log(e);
                     setValues({...values, description: `${e}`});
                   }}
                 />
               </FormControl>
               <FormControl>
-
-                <TextField id="descriptionCovid"
-                           label="Description for covid"
-                           fullWidth
-                           multiline
-                           className={classes.inputs}
-                           onChange={(e: any) => {
-                             setValues({...values, descriptionCovid: `${e.target.value}`});
-                           }}
+                <span
+                  style={{marginTop: 15, marginBottom: 10, color: '#777'}}
+                >
+                  {t('descriptionCovid')}
+                </span>
+                <Editor
+                  apiKey="wong66bw5xrqhgxql7bheqmcjxrqcvofwtrwcck4465k2lf7"
+                  value={values.descriptionCovid}
+                  initialValue={values.descriptionCovid}
+                  init={{
+                    height: 200,
+                    menubar: false,
+                    plugins: [
+                      'advlist autolink lists link image',
+                      'charmap print preview anchor help',
+                      'searchreplace visualblocks code',
+                      'insertdatetime media table paste wordcount'
+                    ],
+                    toolbar:
+                      'undo redo | formatselect | bold italic | \
+                      alignleft aligncenter alignright | \
+                      bullist numlist outdent indent | help'
+                  }}
+                  onEditorChange={(e: any) => {
+                    setValues({...values, descriptionCovid: `${e}`});
+                  }}
                 />
               </FormControl>
 
