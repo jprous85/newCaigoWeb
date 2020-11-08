@@ -12,10 +12,11 @@ import {
   Switch,
   Theme,
   InputLabel,
-  TextareaAutosize
+  TextareaAutosize,
+  TextField,
+  Link
 } from "@material-ui/core";
 import { Editor } from "@tinymce/tinymce-react";
-import TextField from "@material-ui/core/TextField";
 import Simulator from "./../Simulator/Simulator";
 import {CATEGORIES} from "../../../utils/Constants";
 import {useTranslation} from "react-i18next";
@@ -45,6 +46,7 @@ const Create = () => {
   const classes = useStyles();
   const { t } = useTranslation();
 
+  const textEditor: any = process.env.REACT_APP_TEXT_EDITOR;
   const [priceSwitch, setPriceSwitch] = useState(true);
   const [dialogMap, setDialogMap] = useState(false);
   const [values, setValues] = React.useState<EventsState>({
@@ -207,7 +209,7 @@ const Create = () => {
                   {t('description')}
                 </span>
                 <Editor
-                  apiKey="wong66bw5xrqhgxql7bheqmcjxrqcvofwtrwcck4465k2lf7"
+                  apiKey={textEditor}
                   value={values.description}
                   initialValue={values.description}
                   init={{
@@ -236,7 +238,7 @@ const Create = () => {
                   {t('descriptionCovid')}
                 </span>
                 <Editor
-                  apiKey="wong66bw5xrqhgxql7bheqmcjxrqcvofwtrwcck4465k2lf7"
+                  apiKey={textEditor}
                   value={values.descriptionCovid}
                   initialValue={values.descriptionCovid}
                   init={{
@@ -259,7 +261,29 @@ const Create = () => {
                 />
               </FormControl>
 
-              ubicacion
+              <div
+                className={classes.contentLinkMap}
+              >
+                <span
+                  style={{marginTop: 15, marginBottom: 10, color: '#777'}}
+                >
+                {t('ubication')}
+              </span>
+                <div className={classes.linkMapForm}>
+                  <Link
+                    className={classes.linkMapLink}
+                    onClick={()=> {
+                      setDialogMap(true);
+                    }}
+                  >
+                    <ReactMap
+                      setValues={setValues}
+                      values={values}
+                      options
+                    />
+                  </Link>
+                </div>
+              </div>
 
               <FormControlLabel
                 className={classes.onlineChecked}
@@ -279,10 +303,17 @@ const Create = () => {
                 setOpen={setDialogMap}
                 title={"Buscador"}
                 children={
-                  <ReactMap
-                    setValues={setValues}
-                    values={values}
-                  />
+                  <>
+                    <ReactMap
+                      setValues={setValues}
+                      values={values}
+                    />
+                    <Link
+                      onClick={()=> {
+                        setDialogMap(false)
+                      }}
+                    >Salir</Link>
+                  </>
                 }
               />
 
@@ -297,6 +328,7 @@ const Create = () => {
             <div className={classes.samsungContent} style={ScrollHidden}>
               <Simulator
                 event={values}
+                setEvent={setValues}
               />
             </div>
           </div>
@@ -352,6 +384,22 @@ const useStyles = makeStyles((theme: Theme) =>
       overflowY: "auto",
       "&::-webkit-scrollbar": {
         display: "none"
+      }
+    },
+    contentLinkMap: {
+      marginTop: 20,
+      width: "100%"
+    },
+    linkMapForm: {
+      marginTop: 10,
+      marginBottom: 10,
+      width: "100%",
+      height: 200,
+      alignSelf: "center"
+    },
+    linkMapLink: {
+      "&::hover": {
+        cursor: "pointer"
       }
     }
   }),

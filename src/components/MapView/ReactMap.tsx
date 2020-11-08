@@ -7,7 +7,7 @@ import { CORPORATIVE_ROSE } from "../../utils/Constants";
 
 const ReactMap = (props: any) => {
   const classes = useStyles();
-  const {values, setValues} = props;
+  const {values, setValues, options = false} = props;
   const googleMap = useRef(null);
   const apiKey:any = process.env.GOOGLE_PLACES_API_KEY;
 
@@ -23,11 +23,29 @@ const ReactMap = (props: any) => {
     })
   }
 
+  const OPTIONS = (options)? {
+    scrollwheel: false,
+    fullscreenControl: false,
+    disableDoubleClickZoom: false,
+    draggable: false,
+    keyboardShortcuts: false,
+    streetViewControl: false,
+    mapTypeControl: false,
+    panControl: false,
+    disableDefaultUI: false,
+    scaleControl: false,
+    zoomControl: false,
+    clickableIcons: false,
+    draggableCursor: "pointer"
+  }: {};
+
   return (
-    <div style={{ height: '85vh', width: '100%' }}>
+    <div style={{ height: '85%', width: '100%' }}>
       <GoogleMapReact
+        options={OPTIONS}
         bootstrapURLKeys={{ key: apiKey}}
         defaultCenter={values.coords}
+        center={values.coords}
         zoom={14}
         yesIWantToUseGoogleMapApiInternals
         onChange={(e: any)=> {

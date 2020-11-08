@@ -6,11 +6,12 @@ import Descriptions from "./Descriptions";
 import {useTranslation} from "react-i18next";
 import Information from "./Information";
 import SocialMedia from "./SocialMedia";
+import ReactMap from "../../../components/MapView/ReactMap";
 
 const Simulator = (props: any) => {
   const classes = useStyles();
-  const { t } = useTranslation();
-  const {event} = props;
+  const {t} = useTranslation();
+  const {event, setEvent} = props;
 
   return (
     <div className={classes.root}>
@@ -43,6 +44,14 @@ const Simulator = (props: any) => {
             title={"Description Covid"}
             bodyText={event.descriptionCovid}
           />}
+
+          <div className={classes.linkMapForm}>
+            <ReactMap
+              setValues={setEvent}
+              values={event}
+              options
+            />
+          </div>
 
         </div>
       </div>
@@ -82,6 +91,14 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#5a5a5a',
       marginTop: 16,
       fontSize: 15
+    },
+    linkMapForm: {
+      marginTop: 10,
+      marginBottom: 10,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      width: 150,
+      height: 100
     }
   }),
 );
