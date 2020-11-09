@@ -45,6 +45,7 @@ const Simulator = (props: any) => {
             bodyText={event.descriptionCovid}
           />}
 
+          {!event.online &&
           <div className={classes.linkMapForm}>
             <ReactMap
               setValues={setEvent}
@@ -52,6 +53,7 @@ const Simulator = (props: any) => {
               options
             />
           </div>
+          }
 
         </div>
       </div>

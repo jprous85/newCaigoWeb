@@ -261,30 +261,6 @@ const Create = () => {
                 />
               </FormControl>
 
-              <div
-                className={classes.contentLinkMap}
-              >
-                <span
-                  style={{marginTop: 15, marginBottom: 10, color: '#777'}}
-                >
-                {t('ubication')}
-              </span>
-                <div className={classes.linkMapForm}>
-                  <Link
-                    className={classes.linkMapLink}
-                    onClick={()=> {
-                      setDialogMap(true);
-                    }}
-                  >
-                    <ReactMap
-                      setValues={setValues}
-                      values={values}
-                      options
-                    />
-                  </Link>
-                </div>
-              </div>
-
               <FormControlLabel
                 className={classes.onlineChecked}
                 control={
@@ -297,6 +273,32 @@ const Create = () => {
                 }
                 label="Online"
               />
+
+              {!values.online &&
+              <div
+                className={classes.contentLinkMap}
+              >
+                <span
+                  style={{marginTop: 15, marginBottom: 10, color: '#777'}}
+                >
+                {t('ubication')}
+              </span>
+                <div className={classes.linkMapForm}>
+                  <Link
+                    className={classes.linkMapLink}
+                    onClick={() => {
+                      setDialogMap(true);
+                    }}
+                  >
+                    <ReactMap
+                      setValues={setValues}
+                      values={values}
+                      options
+                    />
+                  </Link>
+                </div>
+              </div>
+              }
 
               <Modal
                 open={dialogMap}
