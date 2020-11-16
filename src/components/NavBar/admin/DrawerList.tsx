@@ -39,19 +39,22 @@ const DrawerList = () => {
         <ListItemText primary={t('users')} />
       </ListItem>
 
-      <ListItem button component={Link} to={"/events"}>
+      <ListItem button component={Link} to={"/admin/events"}>
         <ListItemIcon>
           <FormatListBulletedOutlined/>
         </ListItemIcon>
         <ListItemText primary={t('events')} />
       </ListItem>
+
       <Divider/>
+
       <ListItem button onClick={() => logout()}>
         <ListItemIcon>
           <ExitToAppIcon/>
         </ListItemIcon>
         <ListItemText primary={t('logout')} />
       </ListItem>
+
     </List>
   );
 }

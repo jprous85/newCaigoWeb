@@ -4,10 +4,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import * as firebase from "firebase";
 import {firebaseApp} from "../../utils/firebase";
 import {Redirect, useHistory} from "react-router-dom";
-import Create from './Create/Create';
 import Grid from '@material-ui/core/Grid';
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import {createStyles, Paper, Theme} from "@material-ui/core";
+import Create from './Create/Create';
+import AdminHomePage from './AdminHomePage/AdminHomePage';
 
 const NoMatches = () => {
   const classes = useStyles();
@@ -40,7 +41,7 @@ const NoMatches = () => {
 
   let component = <Redirect to={"/"}/>
 
-  if (path[1] === 'admin') component = <div>Home admin</div>;
+  if (path[1] === 'admin') component = <AdminHomePage/>;
   if (path[2] === 'create') component = <Create/>
 
   return (

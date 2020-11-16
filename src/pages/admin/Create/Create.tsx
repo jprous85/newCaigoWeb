@@ -39,7 +39,7 @@ interface EventsState {
   end_time: string;
   online: boolean;
   price: number;
-  coords: any
+  coords: object
 }
 
 const Create = () => {
@@ -110,7 +110,7 @@ const Create = () => {
                 withIcon={false}
                 buttonText='Choose images'
                 onChange={onDrop}
-                imgExtension={['.jpg', '.gif', '.png']}
+                imgExtension={['.jpg', '.jpeg', '.gif', '.png']}
                 maxFileSize={5242880}
                 withPreview
                 withLabel

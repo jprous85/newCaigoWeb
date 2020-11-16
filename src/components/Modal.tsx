@@ -6,7 +6,7 @@ const { innerWidth: width, innerHeight: height } = window;
 
 const Modal = (props: any) => {
   const {
-    open, setOpen, title, children
+    open, setOpen, title, children, fullScreen = true
   } = props;
   const classes = useStyles();
 
@@ -17,7 +17,7 @@ const Modal = (props: any) => {
   return (
     <div>
       <Dialog
-        fullScreen
+        fullScreen={fullScreen}
         open={open}
         onClose={handleOnClose}
       >
